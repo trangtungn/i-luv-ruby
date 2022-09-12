@@ -1,2 +1,2 @@
 # ruby-test
-To learn ruby
+To learn and practise ruby
