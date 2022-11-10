@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        html {
+            font-size: 15px;
+        }
+
+        .box {
+            display: flex;
+            font-size: 16px;
+        }
+
+        .em {
+            width: 10em;
+            height: 10em;
+            background-color: red;
+        }
+
+        .rem {
+            width: 10rem;
+            height: 10rem;
+            background-color: blue;
+        }
+
+        .tags {
+            /* display: flex; */
+            font-size: 14px;
+            border: 1px solid rebeccapurple;
+            width: 25%;
+        }
+
+        .tags__container {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            /* line-height: 1em; */
+            /* max-height: 4.79em; */
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .tags__container > div {
+            display: inline-block;
+            background-color: lavender;
+        }
+
+    </style>
+
+    <title>Em vs Rem</title>
+</head>
+
+<body>
+  <div class="box">
+      <div class="em">EM</div>
+      <div class="rem">REM</div>
+  </div>
+
+  <hr>
+
+  <div class="tags">
+      <div class="tags__container">
+        <div class="tag mr-2 mt-2 p-1 rounded">
+          <span class="mr-1">hello</span>
+          <a>x</a>
+        </div>
+        <div class="tag mr-2 mt-2 p-1 rounded">
+          <span class="mr-1">world</span>
+          <a>x</a>
+        </div>
+        <div class="tag mr-2 mt-2 p-1 rounded">
+          <span class="mr-1">test</span>
+          <a>x</a>
+        </div>
+        <div class="tag mr-2 mt-2 p-1 rounded">
+          <span class="mr-1">tested</span>
+          <a>x</a>
+        </div>
+        <div class="tag mr-2 mt-2 p-1 rounded">
+          <span class="mr-1">good morning</span>
+          <a>x</a>
+        </div>
+        <div class="tag mr-2 mt-2 p-1 rounded">
+          <span class="mr-1">good afternoon</span>
+          <a>x</a>
+        </div>
+      </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+
+</html>
