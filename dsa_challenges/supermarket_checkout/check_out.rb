@@ -7,33 +7,28 @@ class CheckOut
 
   def initialize(rules)
     @pricing_rules = rules
-    @checked_out_items = {}
+    @checked_out_items = Hash.new(0)
   end
 
   def scan(item)
-    return checked_out_items[item] = 1 if checked_out_items[item].nil?
-
-    checked_out_items[item] += 1
+    @checked_out_items[item] += 1
   end
 
   def calc_total
-    total = 0
-    checked_out_items.each do |key, item_count|
+    checked_out_items.reduce(0) do |total, (key, item_count)|
       rule = pricing_rules[key]
-      next unless rule
+      next total if rule.nil?
 
-      if item_has_offer?(rule[:special_price], rule[:number_of_items]) && item_valid_for_offer?(item_count, rule[:number_of_items])
-        number_of_offers = item_count / rule[:number_of_items]
-        remainder = item_count % rule[:number_of_items]
+      if item_has_offer?(rule[:special_price], rule[:number_of_items]) &&
+         item_valid_for_offer?(item_count, rule[:number_of_items])
 
-        total += number_of_offers * rule[:special_price] if number_of_offers.positive?
-        total += remainder * rule[:price] if remainder.positive?
-      else
-        total += item_count * rule[:price]
+        total += (item_count / rule[:number_of_items]) * rule[:special_price]
+
+        item_count = item_count % rule[:number_of_items]
       end
-    end
 
-    total
+      total + item_count * rule[:price]
+    end
   end
 
   private
@@ -72,14 +67,14 @@ pricing_rules = {
 
 # run
 co = CheckOut.new(pricing_rules)
-co.scan('A')
+# co.scan('A')
 co.scan('B')
-co.scan('A')
-co.scan('A')
+# co.scan('A')
+# co.scan('A')
 co.scan('D')
 co.scan('B')
 co.scan('C')
-co.scan('A')
+# co.scan('A')
 
 # result
 p co.calc_total
