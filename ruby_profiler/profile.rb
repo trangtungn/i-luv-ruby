@@ -3,6 +3,7 @@
 
 require 'profile'
 
+# Check out items in supermarket
 class Basket
   attr_accessor :items
 
