@@ -56,8 +56,16 @@ class BinaryTree
     total_left(root)
   end
 
+  def total2
+    total_left2(root)
+  end
+
   def pick
-    pick_left_node(root)
+    pick_left(root)
+  end
+
+  def sum
+    sum_left(root, false)
   end
 
   private
@@ -65,7 +73,6 @@ class BinaryTree
   def total_left(node)
     if node.left
       @total += node.left.value
-      p "left: #{node.left.value} - total: #{@total}"
       total_left(node.left)
     end
 
@@ -74,15 +81,32 @@ class BinaryTree
     @total
   end
 
-  def pick_left_node(node, arr = [])
+  def total_left2(node)
+    val = 0
+    val += node.left.value + total_left2(node.left) if node.left
+    val += total_left2(node.right) if node.right
+
+    val
+  end
+
+  def pick_left(node, arr = [])
     if node.left
       arr << node.left.value
-      pick_left_node(node.left, arr)
+      pick_left(node.left, arr)
     end
 
-    pick_left_node(node.right, arr) if node.right
+    pick_left(node.right, arr) if node.right
 
     arr
+  end
+
+  def sum_left(node, is_left)
+    return 0 if node.nil?
+
+    sum = 0
+    sum += node.value if is_left
+
+    sum + sum_left(node.left, true) + sum_left(node.right, false)
   end
 end
 
@@ -90,12 +114,20 @@ end
 # array = [5, 4, 6, 3, 7]
 array = [10, 5, 15, 3, 7, 12, 17, 2, 4, 6, 8, 11, 13, 16, 18]
 tree = BinaryTree.new(array)
-tree.print_tree(tree.root)
+# tree.print_tree(tree.root)
+
+# p '-' * 80
+# p 'Total all left nodes - Solution 1a:'
+# p "total: #{tree.total}"
 
 p '-' * 80
-p 'Total all left nodes - Solution 1:'
-p "total: #{tree.total}"
+p 'Total all left nodes - Solution 1b:'
+p "total: #{tree.total2}"
 
-p '-' * 80
-p 'Total all left nodes - Solution 2:'
-p tree.pick.sum
+# p '-' * 80
+# p 'Total all left nodes - Solution 2:'
+# p tree.pick.sum
+
+# p '-' * 80
+# p 'Total all left nodes - Solution 3:'
+# p tree.sum
