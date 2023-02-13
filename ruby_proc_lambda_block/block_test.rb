@@ -4,9 +4,9 @@ BEGIN {
    puts 'BEGIN code block - is executed in the order they are encountered'
 }
 
-END {
-   puts 'END code block - is executed in reverse order (bottom up)'
-}
+at_exit do
+  puts 'END code block - is executed in reverse order (bottom up)'
+end
 
 # MAIN block code
 puts 'MAIN code block'

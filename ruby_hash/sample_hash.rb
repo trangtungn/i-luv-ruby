@@ -1,7 +1,7 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
-grades = Hash.new
+grades = {}
 grades['Dorothy Doe'] = 9
 p grades
 

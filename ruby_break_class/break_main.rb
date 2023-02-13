@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './break_square'
 
 s = Square.new

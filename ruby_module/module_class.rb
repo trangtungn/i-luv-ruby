@@ -8,7 +8,6 @@
 # and it's like banging your fist on the table to exclaim the command.
 # -w: is a flag instruction for ruby to turn on warning
 
-
 module Instrument
   # this is an Instrument::Ruler class
   class Ruler

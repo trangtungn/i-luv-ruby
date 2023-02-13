@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# square class
 class Square
   attr_accessor :side_length
 
