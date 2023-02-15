@@ -23,20 +23,20 @@ class MarsRover
     }
   }.freeze
 
-  MOVEMENTS = {
-    'L' => {
-      'North' => 'West',
-      'West' => 'South',
-      'South' => 'East',
-      'East' => 'North'
-    },
-    'R' => {
-      'North' => 'East',
-      'East' => 'South',
-      'South' => 'West',
-      'West' => 'North'
-    }
-  }.freeze
+  # MOVEMENTS = {
+  #   'L' => {
+  #     'North' => 'West',
+  #     'West' => 'South',
+  #     'South' => 'East',
+  #     'East' => 'North'
+  #   },
+  #   'R' => {
+  #     'North' => 'East',
+  #     'East' => 'South',
+  #     'South' => 'West',
+  #     'West' => 'North'
+  #   }
+  # }.freeze
 
   def initialize(x = 0, y = 0, direction = 'North')
     @x = x
@@ -61,10 +61,9 @@ class MarsRover
     when 'M'
       forward
     when 'L'
-      # @direction = DIRECTIONS[direction][dir]
-      @direction = MOVEMENTS[dir][direction]
+      @direction = DIRECTIONS[direction][dir]
     when 'R'
-      @direction = MOVEMENTS[dir][direction]
+      @direction = DIRECTIONS[direction][dir]
     when 'Q'
       @started = false
       puts 'Mars Rover shutting down'
