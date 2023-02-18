@@ -1,4 +1,5 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
+# frozen_string_literal: true
 
 def solution(x, y, d)
   return 0 if x == y
@@ -10,15 +11,15 @@ def solution(x, y, d)
   even_jumps = length / d
   remainder = length % d
 
-  return even_jumps if remainder == 0
+  return even_jumps if remainder.zero?
 
   even_jumps + 1
 end
 
+# NOT VERIFIED yet
 def solution2(x, y, d)
   distance = y - x
-  jumps = (distance / d.to_f).ceil
-  jumps
+  (distance / d.to_f).ceil
 end
 
 solution(1, 1, 20)

@@ -1,4 +1,5 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
+# frozen_string_literal: true
 
 def solution(x, a)
   return -1 if x > a.size
@@ -23,6 +24,6 @@ p solution(1, [1, 1])
 p solution(3, [2, 2, 1, 1, 3])
 p solution(2, [1, 1, 1, 1, 1, 2])
 p solution(2, [2, 2, 2, 2, 2, 1])
-p solution(5, [5, 3, 5, 5, 2, 3, 5, 4, 2, 4, 2 , 3, 3, 1])
-p solution(5, [5, 3, 5, 5, 2, 3, 5, 4, 2, 4, 2 , 3, 3])
-p solution(100, [5, 3, 5, 5, 2, 3, 5, 4, 2, 4, 2 , 3, 3])
+p solution(5, [5, 3, 5, 5, 2, 3, 5, 4, 2, 4, 2, 3, 3, 1])
+p solution(5, [5, 3, 5, 5, 2, 3, 5, 4, 2, 4, 2, 3, 3])
+p solution(100, [5, 3, 5, 5, 2, 3, 5, 4, 2, 4, 2, 3, 3])

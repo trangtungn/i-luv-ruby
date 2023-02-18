@@ -1,4 +1,5 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
+# frozen_string_literal: true
 
 def solution(n)
   longest = 0
@@ -45,6 +46,6 @@ p solution(11)
 p '-' * 10
 p solution(19)
 p '-' * 10
-p solution(1376796946)
+p solution(1_376_796_946)
 p '-' * 10
-p solution(74901729)
+p solution(74_901_729)

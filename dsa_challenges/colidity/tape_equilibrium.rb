@@ -1,4 +1,5 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
+# frozen_string_literal: true
 
 def solution(a)
   min = -1
@@ -25,4 +26,4 @@ p solution [0, 1]
 p solution [0, 1, 0]
 p solution [1, 0]
 p solution [-1, 0, 1]
-p solution [3, 2 ,1, 0, 5]
+p solution [3, 2, 1, 0, 5]
