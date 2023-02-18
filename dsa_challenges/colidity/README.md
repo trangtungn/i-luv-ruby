@@ -1,3 +1,5 @@
+# Iterations
+
 ## BinaryGap
 
 **Find longest sequence of zeros in binary representation of an integer.**
@@ -18,6 +20,7 @@ Write an efficient algorithm for the following assumptions:
 
   - `N` is an integer within the range `[1..2,147,483,647]`.
 
+# Arrays
 
 ## CyclicRotation
 
@@ -59,3 +62,4 @@ Assume that:
 N and K are integers within the range [0..100];
 each element of array A is an integer within the range [−1,000..1,000].
 In your solution, focus on correctness. The performance of your solution will not be the focus of the assessment.
+# Couting Elements
