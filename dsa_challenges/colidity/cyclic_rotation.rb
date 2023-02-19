@@ -1,16 +1,28 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
+def solution3(a, k)
+  return a if k.zero? || a.empty? || a.length == 1 || (k % a.length).zero?
+
+  n = k % a.length
+
+  n.times do
+    last_item = a.pop
+    a.unshift(last_item)
+  end
+
+  a
+end
+
 def solution(a, k)
-  return a if k.zero?
-  return a if a.empty? || a.length == 1
-  return a if a.length.positive? && k > 1 && (a.length % k).zero?
+  return a if k.zero? || a.empty? || a.length == 1 || (k % a.length).zero?
 
-  k.times do
-    n = a.length
-    last_item = a[n - 1]
+  n = k % a.length
+  n.times do
+    size = a.length
+    last_item = a[size - 1]
 
-    (n - 1).downto(1).each do |i|
+    (size - 1).downto(1).each do |i|
       a[i] = a[i - 1]
     end
 
@@ -21,12 +33,11 @@ def solution(a, k)
 end
 
 def solution2(a, k)
-  return a if k.zero?
-  return a if a.empty? || a.length == 1
-  return a if a.length > 1 && k > 1 && (a.length % k).zero?
+  return a if k.zero? || a.empty? || a.length == 1 || (k % a.length).zero?
 
+  n = k % a.length
   xa = a.reverse
-  k.times do
+  n.times do
     first = xa.shift
     xa << first
   end
