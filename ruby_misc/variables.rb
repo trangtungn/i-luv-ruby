@@ -17,14 +17,21 @@ class Vars
 end
 
 Vars.class_method
+# Output:
+# class instance variable value
+# class variable value
 
 puts 'see the difference'
 
 obj = Vars.new
 
 obj.instance_method
+# Output:
+# class variable value
 
 class VarsChild < Vars
 end
 
 VarsChild.class_method
+# Output:
+# class variable value
