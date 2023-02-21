@@ -50,14 +50,14 @@ class BinaryTree
     print_tree(node.right)
   end
 
-  def total
+  def total(solution = 0)
     @total = 0
 
-    total_left(root)
-  end
-
-  def total2
-    total_left2(root)
+    if solution > 1
+      total_left2(root)
+    else
+      total_left(root)
+    end
   end
 
   def pick
@@ -116,13 +116,13 @@ array = [10, 5, 15, 3, 7, 12, 17, 2, 4, 6, 8, 11, 13, 16, 18]
 tree = BinaryTree.new(array)
 # tree.print_tree(tree.root)
 
-# p '-' * 80
-# p 'Total all left nodes - Solution 1a:'
-# p "total: #{tree.total}"
+p '-' * 80
+p 'Total all left nodes - Solution 1a:'
+p "total: #{tree.total}"
 
 p '-' * 80
 p 'Total all left nodes - Solution 1b:'
-p "total: #{tree.total2}"
+p "total: #{tree.total(2)}"
 
 # p '-' * 80
 # p 'Total all left nodes - Solution 2:'
