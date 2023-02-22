@@ -14,9 +14,15 @@ def solution(a)
   prev + 1
 end
 
-p solution([1])
-p solution([])
-p solution([2, 3])
-p solution([3, 2])
-p solution([2, 5, 3, 1])
-p solution([4, 3, 2, 1])
+params = [
+  [1],
+  [],
+  [2, 3],
+  [3, 2],
+  [2, 5, 3, 1],
+  [4, 3, 2, 1],
+]
+
+params.each do |param|
+  p solution(param)
+end
