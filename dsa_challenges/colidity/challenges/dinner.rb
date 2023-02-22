@@ -16,7 +16,6 @@ def solution(a, b, count = 0)
 
   return count if rotate == false
 
-
   last_item = b.pop
   b.unshift(last_item)
 
