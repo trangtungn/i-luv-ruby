@@ -1,8 +1,46 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
-# This solution has time complexity O(n*m)
 def solution(s, p, q)
+  impact_factors = {
+    'A' => 1,
+    'C' => 2,
+    'G' => 3,
+    'T' => 4
+  }
+
+  nucleotides = s.chars # string to array of characters
+
+  prefix_sums = []
+  prefix_sums << Hash.new(0)
+
+  (1..nucleotides.length).each do |i|
+    prefix_sums << prefix_sums[i - 1].clone
+    prefix_sums[i][nucleotides[i - 1]] += 1
+  end
+
+  p prefix_sums
+
+  num = p.size
+  last = num - 1
+  (0..last).map do |i|
+    to_pos = q[i] + 1
+    from_pos = p[i]
+
+    if (prefix_sums[to_pos]['A'] - prefix_sums[from_pos]['A']).positive?
+      impact_factors['A']
+    elsif (prefix_sums[to_pos]['C'] - prefix_sums[from_pos]['C']).positive?
+      impact_factors['C']
+    elsif (prefix_sums[to_pos]['G'] - prefix_sums[from_pos]['G']).positive?
+      impact_factors['G']
+    elsif (prefix_sums[to_pos]['T'] - prefix_sums[from_pos]['T']).positive?
+      impact_factors['T']
+    end
+  end
+end
+
+# This solution has time complexity O(n*m) - score 62%
+def solution1(s, p, q)
   p '**This solution has time complexity O(n*m)**'
   nucleotides = {
     'A' => 1,
@@ -40,12 +78,7 @@ def solution2(s, p, q)
     impact_factor = impact_factors[nucleotide]
     prefix_sums[i] = prefix_sums[i - 1].clone
     prefix_sums[i][impact_factor - 1] += 1
-
-    p prefix_sums
   end
-
-  p 'prefix_sums'
-  p prefix_sums
 
   # for each query, find the minimal impact factor in the corresponding range
   for i in 0..(m - 1)
@@ -78,5 +111,7 @@ list_args.each do |args|
   p 'Note: this solution is O(n*m), just use for reference'
   p solution(*args)
   p "#2 - #{args}"
+  p solution1(*args)
+  p "#3 - #{args}"
   p solution2(*args)
 end

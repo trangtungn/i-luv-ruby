@@ -495,7 +495,7 @@ The part between positions 5 and 5 contains a single nucleotide T, whose impact 
 The part between positions 0 and 6 (the whole string) contains all nucleotides, in particular nucleotide A whose impact factor is 1, so the answer is 1.
 Write a function:
 
-def solution(s, p, q)
+    def solution(s, p, q)
 
 that, given a non-empty string S consisting of N characters and two non-empty arrays P and Q consisting of M integers, returns an array consisting of M integers specifying the consecutive answers to all queries.
 
