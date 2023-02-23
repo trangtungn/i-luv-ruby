@@ -5,7 +5,7 @@ def solution(n)
   longest = 0
   gap = 0
 
-  binary = n.to_s(2)
+  binary = n.to_s(2) # convert integer to binary
 
   p binary
 
@@ -22,30 +22,12 @@ def solution(n)
   longest
 end
 
-# 7
-# 6
-# 6172
-# 9
-# 529
-# 20
-# 15
-# 32
-# 1041
-# 4
-p solution(1)
-p '-' * 10
-p solution(5)
-p '-' * 10
-p solution(8)
-p '-' * 10
-p solution(9)
-p '-' * 10
-p solution(32)
-p '-' * 10
-p solution(11)
-p '-' * 10
-p solution(19)
-p '-' * 10
-p solution(1_376_796_946)
-p '-' * 10
-p solution(74_901_729)
+args = [
+  7, 6, 6172, 9, 529, 20, 15, 32, 1041, 4, 1, 5, 8, 9, 32, 11, 19,
+  1_376_796_946, 74_901_729
+]
+
+args.each do |arg|
+  p solution(arg)
+  p '-' * 10
+end
