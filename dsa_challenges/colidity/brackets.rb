@@ -14,7 +14,7 @@ def solution(s)
   special_chars = %w[V W]
 
   stack = []
-  characters = s.chars
+  characters = s.chars # string to character array
   characters.each do |char|
     next if special_chars.include?(char)
 
