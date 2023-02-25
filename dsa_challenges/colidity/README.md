@@ -974,3 +974,1055 @@ Write an efficient algorithm for the following assumptions:
   - N is an integer within the range [0..400,000];
   - each element of array A is an integer within the range [0..200,000].
 
+## MaxSliceSum
+
+*Medium*
+
+**Find a maximum sum of a compact subsequence of array elements.**
+
+A non-empty array A consisting of N integers is given. A pair of integers (P, Q), such that 0 ≤ P ≤ Q < N, is called a slice of array A. The sum of a slice (P, Q) is the total of A[P] + A[P+1] + ... + A[Q].
+
+Write a function:
+
+    def solution(a)
+
+that, given an array A consisting of N integers, returns the maximum sum of any slice of A.
+
+For example, given array A such that:
+
+  A[0] = 3  A[1] = 2  A[2] = -6
+  A[3] = 4  A[4] = 0
+
+the function should return 5 because:
+
+  - (3, 4) is a slice of A that has sum 4,
+  - (2, 2) is a slice of A that has sum −6,
+  - (0, 1) is a slice of A that has sum 5,
+  - no other slice of A has sum greater than (0, 1).
+
+Write an efficient algorithm for the following assumptions:
+
+  - N is an integer within the range [1..1,000,000];
+  - each element of array A is an integer within the range [−1,000,000..1,000,000];
+  - the result will be an integer within the range [−2,147,483,648..2,147,483,647].
+
+## MaxDoubleSliceSum
+
+*Medium*
+
+**Find the maximal sum of any double slice.**
+
+A non-empty array A consisting of N integers is given.
+
+A triplet (X, Y, Z), such that 0 ≤ X < Y < Z < N, is called a double slice.
+
+The sum of double slice (X, Y, Z) is the total of A[X + 1] + A[X + 2] + ... + A[Y − 1] + A[Y + 1] + A[Y + 2] + ... + A[Z − 1].
+
+For example, array A such that:
+
+    A[0] = 3
+    A[1] = 2
+    A[2] = 6
+    A[3] = -1
+    A[4] = 4
+    A[5] = 5
+    A[6] = -1
+    A[7] = 2
+contains the following example double slices:
+
+  - double slice (0, 3, 6), sum is 2 + 6 + 4 + 5 = 17,
+  - double slice (0, 3, 7), sum is 2 + 6 + 4 + 5 − 1 = 16,
+  - double slice (3, 4, 5), sum is 0.
+
+The goal is to find the maximal sum of any double slice.
+
+Write a function:
+
+    def solution(a)
+
+that, given a non-empty array A consisting of N integers, returns the maximal sum of any double slice.
+
+For example, given:
+
+    A[0] = 3
+    A[1] = 2
+    A[2] = 6
+    A[3] = -1
+    A[4] = 4
+    A[5] = 5
+    A[6] = -1
+    A[7] = 2
+the function should return 17, because no double slice of array A has a sum of greater than 17.
+
+Write an efficient algorithm for the following assumptions:
+
+  - N is an integer within the range [3..100,000];
+  - each element of array A is an integer within the range [−10,000..10,000].
+
+# Prime and composite numbers
+
+## CountFactors
+
+*Easy*
+
+**Count factors of given number n.**
+
+A positive integer D is a factor of a positive integer N if there exists an integer M such that N = D * M.
+
+For example, 6 is a factor of 24, because M = 4 satisfies the above condition (24 = 6 * 4).
+
+Write a function:
+
+def solution(n)
+
+that, given a positive integer N, returns the number of its factors.
+
+For example, given N = 24, the function should return 8, because 24 has 8 factors, namely 1, 2, 3, 4, 6, 8, 12, 24. There are no other factors of 24.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..2,147,483,647].
+
+
+## MinPerimeterRectangle
+
+*Easy*
+
+**Find the minimal perimeter of any rectangle whose area equals N.**
+
+An integer N is given, representing the area of some rectangle.
+
+The area of a rectangle whose sides are of length A and B is A * B, and the perimeter is 2 * (A + B).
+
+The goal is to find the minimal perimeter of any rectangle whose area equals N. The sides of this rectangle should be only integers.
+
+For example, given integer N = 30, rectangles of area 30 are:
+
+(1, 30), with a perimeter of 62,
+(2, 15), with a perimeter of 34,
+(3, 10), with a perimeter of 26,
+(5, 6), with a perimeter of 22.
+Write a function:
+
+def solution(n)
+
+that, given an integer N, returns the minimal perimeter of any rectangle whose area is exactly equal to N.
+
+For example, given an integer N = 30, the function should return 22, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..1,000,000,000].
+
+## Flags
+
+*Medium*
+
+**Find the maximum number of flags that can be set on mountain peaks.**
+
+A non-empty array A consisting of N integers is given.
+
+A peak is an array element which is larger than its neighbours. More precisely, it is an index P such that 0 < P < N − 1 and A[P − 1] < A[P] > A[P + 1].
+
+For example, the following array A:
+
+    A[0] = 1
+    A[1] = 5
+    A[2] = 3
+    A[3] = 4
+    A[4] = 3
+    A[5] = 4
+    A[6] = 1
+    A[7] = 2
+    A[8] = 3
+    A[9] = 4
+    A[10] = 6
+    A[11] = 2
+has exactly four peaks: elements 1, 3, 5 and 10.
+
+You are going on a trip to a range of mountains whose relative heights are represented by array A, as shown in a figure below. You have to choose how many flags you should take with you. The goal is to set the maximum number of flags on the peaks, according to certain rules.
+
+  ![Flags](../../assets/images/flags.png)
+
+Flags can only be set on peaks. What's more, if you take K flags, then the distance between any two flags should be greater than or equal to K. The distance between indices P and Q is the absolute value |P − Q|.
+
+For example, given the mountain range represented by array A, above, with N = 12, if you take:
+
+  - two flags, you can set them on peaks 1 and 5;
+  - three flags, you can set them on peaks 1, 5 and 10;
+  - four flags, you can set only three flags, on peaks 1, 5 and 10.
+
+You can therefore set a maximum of three flags in this case.
+
+Write a function:
+
+    def solution(a)
+
+that, given a non-empty array A of N integers, returns the maximum number of flags that can be set on the peaks of the array.
+
+For example, the following array A:
+
+    A[0] = 1
+    A[1] = 5
+    A[2] = 3
+    A[3] = 4
+    A[4] = 3
+    A[5] = 4
+    A[6] = 1
+    A[7] = 2
+    A[8] = 3
+    A[9] = 4
+    A[10] = 6
+    A[11] = 2
+the function should return 3, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..400,000];
+each element of array A is an integer within the range [0..1,000,000,000].
+
+## Peaks
+
+*Medium*
+
+**Divide an array into the maximum number of same-sized blocks, each of which should contain an index P such that A[P - 1] < A[P] > A[P + 1].**
+
+A non-empty array A consisting of N integers is given.
+
+A peak is an array element which is larger than its neighbors. More precisely, it is an index P such that 0 < P < N − 1,  A[P − 1] < A[P] and A[P] > A[P + 1].
+
+For example, the following array A:
+
+    A[0] = 1
+    A[1] = 2
+    A[2] = 3
+    A[3] = 4
+    A[4] = 3
+    A[5] = 4
+    A[6] = 1
+    A[7] = 2
+    A[8] = 3
+    A[9] = 4
+    A[10] = 6
+    A[11] = 2
+has exactly three peaks: 3, 5, 10.
+
+We want to divide this array into blocks containing the same number of elements. More precisely, we want to choose a number K that will yield the following blocks:
+
+A[0], A[1], ..., A[K − 1],
+A[K], A[K + 1], ..., A[2K − 1],
+...
+A[N − K], A[N − K + 1], ..., A[N − 1].
+What's more, every block should contain at least one peak. Notice that extreme elements of the blocks (for example A[K − 1] or A[K]) can also be peaks, but only if they have both neighbors (including one in an adjacent blocks).
+
+The goal is to find the maximum number of blocks into which the array A can be divided.
+
+Array A can be divided into blocks as follows:
+
+one block (1, 2, 3, 4, 3, 4, 1, 2, 3, 4, 6, 2). This block contains three peaks.
+two blocks (1, 2, 3, 4, 3, 4) and (1, 2, 3, 4, 6, 2). Every block has a peak.
+three blocks (1, 2, 3, 4), (3, 4, 1, 2), (3, 4, 6, 2). Every block has a peak. Notice in particular that the first block (1, 2, 3, 4) has a peak at A[3], because A[2] < A[3] > A[4], even though A[4] is in the adjacent block.
+However, array A cannot be divided into four blocks, (1, 2, 3), (4, 3, 4), (1, 2, 3) and (4, 6, 2), because the (1, 2, 3) blocks do not contain a peak. Notice in particular that the (4, 3, 4) block contains two peaks: A[3] and A[5].
+
+The maximum number of blocks that array A can be divided into is three.
+
+Write a function:
+
+    def solution(a)
+
+that, given a non-empty array A consisting of N integers, returns the maximum number of blocks into which A can be divided.
+
+If A cannot be divided into some number of blocks, the function should return 0.
+
+For example, given:
+
+    A[0] = 1
+    A[1] = 2
+    A[2] = 3
+    A[3] = 4
+    A[4] = 3
+    A[5] = 4
+    A[6] = 1
+    A[7] = 2
+    A[8] = 3
+    A[9] = 4
+    A[10] = 6
+    A[11] = 2
+the function should return 3, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..100,000];
+each element of array A is an integer within the range [0..1,000,000,000].
+
+# Sieve of Eratosthenes
+
+## CountNonDivisible
+
+*Medium*
+
+**Calculate the number of elements of an array that are not divisors of each element.**
+
+You are given an array A consisting of N integers.
+
+For each number A[i] such that 0 ≤ i < N, we want to count the number of elements of the array that are not the divisors of A[i]. We say that these elements are non-divisors.
+
+For example, consider integer N = 5 and array A such that:
+
+    A[0] = 3
+    A[1] = 1
+    A[2] = 2
+    A[3] = 3
+    A[4] = 6
+For the following elements:
+
+A[0] = 3, the non-divisors are: 2, 6,
+A[1] = 1, the non-divisors are: 3, 2, 3, 6,
+A[2] = 2, the non-divisors are: 3, 3, 6,
+A[3] = 3, the non-divisors are: 2, 6,
+A[4] = 6, there aren't any non-divisors.
+Write a function:
+
+def solution(a)
+
+that, given an array A consisting of N integers, returns a sequence of integers representing the amount of non-divisors.
+
+Result array should be returned as an array of integers.
+
+For example, given:
+
+    A[0] = 3
+    A[1] = 1
+    A[2] = 2
+    A[3] = 3
+    A[4] = 6
+the function should return [2, 4, 3, 2, 0], as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..50,000];
+each element of array A is an integer within the range [1..2 * N].
+
+## CountSemiprimes
+
+*Medium*
+
+**Count the semiprime numbers in the given range [a..b]**
+
+A prime is a positive integer X that has exactly two distinct divisors: 1 and X. The first few prime integers are 2, 3, 5, 7, 11 and 13.
+
+A semiprime is a natural number that is the product of two (not necessarily distinct) prime numbers. The first few semiprimes are 4, 6, 9, 10, 14, 15, 21, 22, 25, 26.
+
+You are given two non-empty arrays P and Q, each consisting of M integers. These arrays represent queries about the number of semiprimes within specified ranges.
+
+Query K requires you to find the number of semiprimes within the range (P[K], Q[K]), where 1 ≤ P[K] ≤ Q[K] ≤ N.
+
+For example, consider an integer N = 26 and arrays P, Q such that:
+
+    P[0] = 1    Q[0] = 26
+    P[1] = 4    Q[1] = 10
+    P[2] = 16   Q[2] = 20
+The number of semiprimes within each of these ranges is as follows:
+
+(1, 26) is 10,
+(4, 10) is 4,
+(16, 20) is 0.
+Write a function:
+
+    def solution(n, p, p)
+
+that, given an integer N and two non-empty arrays P and Q consisting of M integers, returns an array consisting of M elements specifying the consecutive answers to all the queries.
+
+For example, given an integer N = 26 and arrays P, Q such that:
+
+    P[0] = 1    Q[0] = 26
+    P[1] = 4    Q[1] = 10
+    P[2] = 16   Q[2] = 20
+the function should return the values [10, 4, 0], as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [1..50,000];
+M is an integer within the range [1..30,000];
+each element of arrays P and Q is an integer within the range [1..N];
+P[i] ≤ Q[i].
+
+# Euclidean algorithm
+
+## ChocolatesByNumbers
+
+*Easy*
+
+**There are N chocolates in a circle. Count the number of chocolates you will eat.**
+
+Two positive integers N and M are given. Integer N represents the number of chocolates arranged in a circle, numbered from 0 to N − 1.
+
+You start to eat the chocolates. After eating a chocolate you leave only a wrapper.
+
+You begin with eating chocolate number 0. Then you omit the next M − 1 chocolates or wrappers on the circle, and eat the following one.
+
+More precisely, if you ate chocolate number X, then you will next eat the chocolate with number (X + M) modulo N (remainder of division).
+
+You stop eating when you encounter an empty wrapper.
+
+For example, given integers N = 10 and M = 4. You will eat the following chocolates: 0, 4, 8, 2, 6.
+
+The goal is to count the number of chocolates that you will eat, following the above rules.
+
+Write a function:
+
+def solution(n, m)
+
+that, given two positive integers N and M, returns the number of chocolates that you will eat.
+
+For example, given integers N = 10 and M = 4. the function should return 5, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N and M are integers within the range [1..1,000,000,000].
+
+## CommonPrimeDivisors
+
+*Medium*
+
+**Check whether two numbers have the same prime divisors.**
+
+A prime is a positive integer X that has exactly two distinct divisors: 1 and X. The first few prime integers are 2, 3, 5, 7, 11 and 13.
+
+A prime D is called a prime divisor of a positive integer P if there exists a positive integer K such that D * K = P. For example, 2 and 5 are prime divisors of 20.
+
+You are given two positive integers N and M. The goal is to check whether the sets of prime divisors of integers N and M are exactly the same.
+
+For example, given:
+
+N = 15 and M = 75, the prime divisors are the same: {3, 5};
+N = 10 and M = 30, the prime divisors aren't the same: {2, 5} is not equal to {2, 3, 5};
+N = 9 and M = 5, the prime divisors aren't the same: {3} is not equal to {5}.
+Write a function:
+
+class Solution { public int solution(int[] A, int[] B); }
+
+that, given two non-empty arrays A and B of Z integers, returns the number of positions K for which the prime divisors of A[K] and B[K] are exactly the same.
+
+For example, given:
+
+    A[0] = 15   B[0] = 75
+    A[1] = 10   B[1] = 30
+    A[2] = 3    B[2] = 5
+the function should return 1, because only one pair (15, 75) has the same set of prime divisors.
+
+Write an efficient algorithm for the following assumptions:
+
+Z is an integer within the range [1..6,000];
+each element of arrays A and B is an integer within the range [1..2,147,483,647].
+
+# Fibonacci numbers
+
+## FibFrog
+
+*Medium*
+
+**Count the minimum number of jumps required for a frog to get to the other side of a river.**
+
+The Fibonacci sequence is defined using the following recursive formula:
+
+    F(0) = 0
+    F(1) = 1
+    F(M) = F(M - 1) + F(M - 2) if M >= 2
+A small frog wants to get to the other side of a river. The frog is initially located at one bank of the river (position −1) and wants to get to the other bank (position N). The frog can jump over any distance F(K), where F(K) is the K-th Fibonacci number. Luckily, there are many leaves on the river, and the frog can jump between the leaves, but only in the direction of the bank at position N.
+
+The leaves on the river are represented in an array A consisting of N integers. Consecutive elements of array A represent consecutive positions from 0 to N − 1 on the river. Array A contains only 0s and/or 1s:
+
+0 represents a position without a leaf;
+1 represents a position containing a leaf.
+The goal is to count the minimum number of jumps in which the frog can get to the other side of the river (from position −1 to position N). The frog can jump between positions −1 and N (the banks of the river) and every position containing a leaf.
+
+For example, consider array A such that:
+
+    A[0] = 0
+    A[1] = 0
+    A[2] = 0
+    A[3] = 1
+    A[4] = 1
+    A[5] = 0
+    A[6] = 1
+    A[7] = 0
+    A[8] = 0
+    A[9] = 0
+    A[10] = 0
+The frog can make three jumps of length F(5) = 5, F(3) = 2 and F(5) = 5.
+
+Write a function:
+
+    def solution(a)
+
+that, given an array A consisting of N integers, returns the minimum number of jumps by which the frog can get to the other side of the river. If the frog cannot reach the other side of the river, the function should return −1.
+
+For example, given:
+
+    A[0] = 0
+    A[1] = 0
+    A[2] = 0
+    A[3] = 1
+    A[4] = 1
+    A[5] = 0
+    A[6] = 1
+    A[7] = 0
+    A[8] = 0
+    A[9] = 0
+    A[10] = 0
+the function should return 3, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+N is an integer within the range [0..100,000];
+each element of array A is an integer that can have one of the following values: 0, 1.
+
+## Ladder
+
+*Medium*
+
+**Count the number of different ways of climbing to the top of a ladder.**
+
+You have to climb up a ladder. The ladder has exactly N rungs, numbered from 1 to N. With each step, you can ascend by one or two rungs. More precisely:
+
+  with your first step you can stand on rung 1 or 2,
+  if you are on rung K, you can move to rungs K + 1 or K + 2,
+  finally you have to stand on rung N.
+
+Your task is to count the number of different ways of climbing to the top of the ladder.
+
+For example, given N = 4, you have five different ways of climbing, ascending by:
+
+  1, 1, 1 and 1 rung,
+  1, 1 and 2 rungs,
+  1, 2 and 1 rung,
+  2, 1 and 1 rungs, and
+  2 and 2 rungs.
+
+Given N = 5, you have eight different ways of climbing, ascending by:
+
+  1, 1, 1, 1 and 1 rung,
+  1, 1, 1 and 2 rungs,
+  1, 1, 2 and 1 rung,
+  1, 2, 1 and 1 rung,
+  1, 2 and 2 rungs,
+  2, 1, 1 and 1 rungs,
+  2, 1 and 2 rungs, and
+  2, 2 and 1 rung.
+
+The number of different ways can be very large, so it is sufficient to return the result modulo 2P, for a given integer P.
+
+Write a function:
+
+    def solution(a, b)
+
+that, given two non-empty arrays A and B of L integers, returns an array consisting of L integers specifying the consecutive answers; position I should contain the number of different ways of climbing the ladder with A[I] rungs modulo 2B[I].
+
+For example, given L = 5 and:
+
+    A[0] = 4   B[0] = 3
+    A[1] = 4   B[1] = 2
+    A[2] = 5   B[2] = 4
+    A[3] = 5   B[3] = 3
+    A[4] = 1   B[4] = 1
+
+the function should return the sequence [5, 1, 8, 0, 1], as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  L is an integer within the range [1..50,000];
+  each element of array A is an integer within the range [1..L];
+  each element of array B is an integer within the range [1..30].
+
+# Binary search algorithm
+
+## MinMaxDivision
+
+*Medium*
+
+**Divide array A into K blocks and minimize the largest sum of any block.**
+
+You are given integers K, M and a non-empty array A consisting of N integers. Every element of the array is not greater than M.
+
+You should divide this array into K blocks of consecutive elements. The size of the block is any integer between 0 and N. Every element of the array should belong to some block.
+
+The sum of the block from X to Y equals A[X] + A[X + 1] + ... + A[Y]. The sum of empty block equals 0.
+
+The large sum is the maximal sum of any block.
+
+For example, you are given integers K = 3, M = 5 and array A such that:
+
+    A[0] = 2
+    A[1] = 1
+    A[2] = 5
+    A[3] = 1
+    A[4] = 2
+    A[5] = 2
+    A[6] = 2
+The array can be divided, for example, into the following blocks:
+
+  [2, 1, 5, 1, 2, 2, 2], [], [] with a large sum of 15;
+  [2], [1, 5, 1, 2], [2, 2] with a large sum of 9;
+  [2, 1, 5], [], [1, 2, 2, 2] with a large sum of 8;
+  [2, 1], [5, 1], [2, 2, 2] with a large sum of 6.
+
+The goal is to minimize the large sum. In the above example, 6 is the minimal large sum.
+
+Write a function:
+
+    def solution(k, m, a)
+
+that, given integers K, M and a non-empty array A consisting of N integers, returns the minimal large sum.
+
+For example, given K = 3, M = 5 and array A such that:
+
+    A[0] = 2
+    A[1] = 1
+    A[2] = 5
+    A[3] = 1
+    A[4] = 2
+    A[5] = 2
+    A[6] = 2
+
+the function should return 6, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N and K are integers within the range [1..100,000];
+  M is an integer within the range [0..10,000];
+  each element of array A is an integer within the range [0..M].
+
+## NailingPlanks
+
+*Medium*
+
+**Count the minimum number of nails that allow a series of planks to be nailed.**
+
+You are given two non-empty arrays A and B consisting of N integers. These arrays represent N planks. More precisely, A[K] is the start and B[K] the end of the K−th plank.
+
+Next, you are given a non-empty array C consisting of M integers. This array represents M nails. More precisely, C[I] is the position where you can hammer in the I−th nail.
+
+We say that a plank (A[K], B[K]) is nailed if there exists a nail C[I] such that A[K] ≤ C[I] ≤ B[K].
+
+The goal is to find the minimum number of nails that must be used until all the planks are nailed. In other words, you should find a value J such that all planks will be nailed after using only the first J nails. More precisely, for every plank (A[K], B[K]) such that 0 ≤ K < N, there should exist a nail C[I] such that I < J and A[K] ≤ C[I] ≤ B[K].
+
+For example, given arrays A, B such that:
+
+    A[0] = 1    B[0] = 4
+    A[1] = 4    B[1] = 5
+    A[2] = 5    B[2] = 9
+    A[3] = 8    B[3] = 10
+four planks are represented: [1, 4], [4, 5], [5, 9] and [8, 10].
+
+Given array C such that:
+
+    C[0] = 4
+    C[1] = 6
+    C[2] = 7
+    C[3] = 10
+    C[4] = 2
+if we use the following nails:
+
+0, then planks [1, 4] and [4, 5] will both be nailed.
+0, 1, then planks [1, 4], [4, 5] and [5, 9] will be nailed.
+0, 1, 2, then planks [1, 4], [4, 5] and [5, 9] will be nailed.
+0, 1, 2, 3, then all the planks will be nailed.
+Thus, four is the minimum number of nails that, used sequentially, allow all the planks to be nailed.
+
+Write a function:
+
+    def solution(a, b, c)
+
+that, given two non-empty arrays A and B consisting of N integers and a non-empty array C consisting of M integers, returns the minimum number of nails that, used sequentially, allow all the planks to be nailed.
+
+If it is not possible to nail all the planks, the function should return −1.
+
+For example, given arrays A, B, C such that:
+
+    A[0] = 1    B[0] = 4
+    A[1] = 4    B[1] = 5
+    A[2] = 5    B[2] = 9
+    A[3] = 8    B[3] = 10
+
+    C[0] = 4
+    C[1] = 6
+    C[2] = 7
+    C[3] = 10
+    C[4] = 2
+the function should return 4, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N and M are integers within the range [1..30,000];
+  each element of arrays A, B and C is an integer within the range [1..2*M];
+  A[K] ≤ B[K].
+
+
+# Caterpillar method
+
+## AbsDistinct
+
+*Easy*
+
+**Compute number of distinct absolute values of sorted array elements.**
+
+A non-empty array A consisting of N numbers is given. The array is sorted in non-decreasing order. The absolute distinct count of this array is the number of distinct absolute values among the elements of the array.
+
+For example, consider array A such that:
+
+    A[0] = -5
+    A[1] = -3
+    A[2] = -1
+    A[3] =  0
+    A[4] =  3
+    A[5] =  6
+
+The absolute distinct count of this array is 5, because there are 5 distinct absolute values among the elements of this array, namely 0, 1, 3, 5 and 6.
+
+Write a function:
+
+    def solution(a)
+
+that, given a non-empty array A consisting of N numbers, returns absolute distinct count of array A.
+
+For example, given array A such that:
+
+    A[0] = -5
+    A[1] = -3
+    A[2] = -1
+    A[3] =  0
+    A[4] =  3
+    A[5] =  6
+
+the function should return 5, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [1..100,000];
+  each element of array A is an integer within the range [−2,147,483,648..2,147,483,647];
+  array A is sorted in non-decreasing order.
+
+## CountDistinctSlices
+
+*Easy*
+
+**Count the number of distinct slices (containing only unique numbers).**
+
+An integer M and a non-empty array A consisting of N non-negative integers are given. All integers in array A are less than or equal to M.
+
+A pair of integers (P, Q), such that 0 ≤ P ≤ Q < N, is called a slice of array A. The slice consists of the elements A[P], A[P + 1], ..., A[Q]. A distinct slice is a slice consisting of only unique numbers. That is, no individual number occurs more than once in the slice.
+
+For example, consider integer M = 6 and array A such that:
+
+    A[0] = 3
+    A[1] = 4
+    A[2] = 5
+    A[3] = 5
+    A[4] = 2
+There are exactly nine distinct slices: (0, 0), (0, 1), (0, 2), (1, 1), (1, 2), (2, 2), (3, 3), (3, 4) and (4, 4).
+
+The goal is to calculate the number of distinct slices.
+
+Write a function:
+
+def solution(m, a)
+
+that, given an integer M and a non-empty array A consisting of N integers, returns the number of distinct slices.
+
+If the number of distinct slices is greater than 1,000,000,000, the function should return 1,000,000,000.
+
+For example, given integer M = 6 and array A such that:
+
+    A[0] = 3
+    A[1] = 4
+    A[2] = 5
+    A[3] = 5
+    A[4] = 2
+the function should return 9, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [1..100,000];
+  M is an integer within the range [0..100,000];
+  each element of array A is an integer within the range [0..M].
+
+## CountTriangles
+
+*Easy*
+
+**Count the number of triangles that can be built from a given set of edges.**
+
+An array A consisting of N integers is given. A triplet (P, Q, R) is triangular if it is possible to build a triangle with sides of lengths A[P], A[Q] and A[R]. In other words, triplet (P, Q, R) is triangular if 0 ≤ P < Q < R < N and:
+
+  A[P] + A[Q] > A[R],
+  A[Q] + A[R] > A[P],
+  A[R] + A[P] > A[Q].
+
+For example, consider array A such that:
+
+    A[0] = 10    A[1] = 2    A[2] = 5
+    A[3] = 1     A[4] = 8    A[5] = 12
+
+There are four triangular triplets that can be constructed from elements of this array, namely (0, 2, 4), (0, 2, 5), (0, 4, 5), and (2, 4, 5).
+
+Write a function:
+
+    def solution(a)
+
+that, given an array A consisting of N integers, returns the number of triangular triplets in this array.
+
+For example, given array A such that:
+
+    A[0] = 10    A[1] = 2    A[2] = 5
+    A[3] = 1     A[4] = 8    A[5] = 12
+
+the function should return 4, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [0..1,000];
+  each element of array A is an integer within the range [1..1,000,000,000].
+
+## MinAbsSumOfTwo
+
+*Medium*
+
+**Find the minimal absolute value of a sum of two elements.**
+
+Let A be a non-empty array consisting of N integers.
+
+The abs sum of two for a pair of indices (P, Q) is the absolute value |A[P] + A[Q]|, for 0 ≤ P ≤ Q < N.
+
+For example, the following array A:
+
+    A[0] =  1
+    A[1] =  4
+    A[2] = -3
+
+  has pairs of indices (0, 0), (0, 1), (0, 2), (1, 1), (1, 2), (2, 2).
+  The abs sum of two for the pair (0, 0) is A[0] + A[0] = |1 + 1| = 2.
+  The abs sum of two for the pair (0, 1) is A[0] + A[1] = |1 + 4| = 5.
+  The abs sum of two for the pair (0, 2) is A[0] + A[2] = |1 + (−3)| = 2.
+  The abs sum of two for the pair (1, 1) is A[1] + A[1] = |4 + 4| = 8.
+  The abs sum of two for the pair (1, 2) is A[1] + A[2] = |4 + (−3)| = 1.
+  The abs sum of two for the pair (2, 2) is A[2] + A[2] = |(−3) + (−3)| = 6.
+
+Write a function:
+
+    def solution(a)
+
+that, given a non-empty array A consisting of N integers, returns the minimal abs sum of two for any pair of indices in this array.
+
+For example, given the following array A:
+
+    A[0] =  1
+    A[1] =  4
+    A[2] = -3
+
+the function should return 1, as explained above.
+
+Given array A:
+
+    A[0] = -8
+    A[1] =  4
+    A[2] =  5
+    A[3] =-10
+    A[4] =  3
+
+the function should return |(−8) + 5| = 3.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [1..100,000];
+  each element of array A is an integer within the range [−1,000,000,000..1,000,000,000].
+
+# Greedy algorithms
+
+## MaxNonoverlappingSegments
+
+*Easy*
+
+**Find a maximal set of non-overlapping segments.**
+
+Located on a line are N segments, numbered from 0 to N − 1, whose positions are given in arrays A and B. For each I (0 ≤ I < N) the position of segment I is from A[I] to B[I] (inclusive). The segments are sorted by their ends, which means that B[K] ≤ B[K + 1] for K such that 0 ≤ K < N − 1.
+
+Two segments I and J, such that I ≠ J, are overlapping if they share at least one common point. In other words, A[I] ≤ A[J] ≤ B[I] or A[J] ≤ A[I] ≤ B[J].
+
+We say that the set of segments is non-overlapping if it contains no two overlapping segments. The goal is to find the size of a non-overlapping set containing the maximal number of segments.
+
+For example, consider arrays A, B such that:
+
+    A[0] = 1    B[0] = 5
+    A[1] = 3    B[1] = 6
+    A[2] = 7    B[2] = 8
+    A[3] = 9    B[3] = 9
+    A[4] = 9    B[4] = 10
+
+The segments are shown in the figure below.
+
+  ![segments](../../assets/images/segments.png)
+
+The size of a non-overlapping set containing a maximal number of segments is 3. For example, possible sets are {0, 2, 3}, {0, 2, 4}, {1, 2, 3} or {1, 2, 4}. There is no non-overlapping set with four segments.
+
+Write a function:
+
+    def solution(a, b)
+
+that, given two arrays A and B consisting of N integers, returns the size of a non-overlapping set containing a maximal number of segments.
+
+For example, given arrays A, B shown above, the function should return 3, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [0..30,000];
+  each element of arrays A and B is an integer within the range [0..1,000,000,000];
+  A[I] ≤ B[I], for each I (0 ≤ I < N);
+  B[K] ≤ B[K + 1], for each K (0 ≤ K < N − 1).
+
+## TieRopes
+
+*Easy*
+
+**Tie adjacent ropes to achieve the maximum number of ropes of length >= K.**
+
+There are N ropes numbered from 0 to N − 1, whose lengths are given in an array A, lying on the floor in a line. For each I (0 ≤ I < N), the length of rope I on the line is A[I].
+
+We say that two ropes I and I + 1 are adjacent. Two adjacent ropes can be tied together with a knot, and the length of the tied rope is the sum of lengths of both ropes. The resulting new rope can then be tied again.
+
+For a given integer K, the goal is to tie the ropes in such a way that the number of ropes whose length is greater than or equal to K is maximal.
+
+For example, consider K = 4 and array A such that:
+
+    A[0] = 1
+    A[1] = 2
+    A[2] = 3
+    A[3] = 4
+    A[4] = 1
+    A[5] = 1
+    A[6] = 3
+The ropes are shown in the figure below.
+
+  ![ropes](../../assets/images/ropes.png)
+
+We can tie:
+
+  rope 1 with rope 2 to produce a rope of length A[1] + A[2] = 5;
+  rope 4 with rope 5 with rope 6 to produce a rope of length A[4] + A[5] + A[6] = 5.
+
+After that, there will be three ropes whose lengths are greater than or equal to K = 4. It is not possible to produce four such ropes.
+
+Write a function:
+
+    def solution(k, a)
+
+that, given an integer K and a non-empty array A of N integers, returns the maximum number of ropes of length greater than or equal to K that can be created.
+
+For example, given K = 4 and array A such that:
+
+    A[0] = 1
+    A[1] = 2
+    A[2] = 3
+    A[3] = 4
+    A[4] = 1
+    A[5] = 1
+    A[6] = 3
+
+the function should return 3, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [1..100,000];
+  K is an integer within the range [1..1,000,000,000];
+  each element of array A is an integer within the range [1..1,000,000,000].
+
+# Dynamic programming
+
+## NumberSolitaire
+
+*Medium*
+
+**In a given array, find the subset of maximal sum in which the distance between consecutive elements is at most 6.**
+
+A game for one player is played on a board consisting of N consecutive squares, numbered from 0 to N − 1. There is a number written on each square. A non-empty array A of N integers contains the numbers written on the squares. Moreover, some squares can be marked during the game.
+
+At the beginning of the game, there is a pebble on square number 0 and this is the only square on the board which is marked. The goal of the game is to move the pebble to square number N − 1.
+
+During each turn we throw a six-sided die, with numbers from 1 to 6 on its faces, and consider the number K, which shows on the upper face after the die comes to rest. Then we move the pebble standing on square number I to square number I + K, providing that square number I + K exists. If square number I + K does not exist, we throw the die again until we obtain a valid move. Finally, we mark square number I + K.
+
+After the game finishes (when the pebble is standing on square number N − 1), we calculate the result. The result of the game is the sum of the numbers written on all marked squares.
+
+For example, given the following array:
+
+    A[0] = 1
+    A[1] = -2
+    A[2] = 0
+    A[3] = 9
+    A[4] = -1
+    A[5] = -2
+one possible game could be as follows:
+
+  the pebble is on square number 0, which is marked;
+  we throw 3; the pebble moves from square number 0 to square number 3; we mark square number 3;
+  we throw 5; the pebble does not move, since there is no square number 8 on the board;
+  we throw 2; the pebble moves to square number 5; we mark this square and the game ends.
+
+The marked squares are 0, 3 and 5, so the result of the game is 1 + 9 + (−2) = 8. This is the maximal possible result that can be achieved on this board.
+
+Write a function:
+
+    def solution(a)
+
+that, given a non-empty array A of N integers, returns the maximal result that can be achieved on the board represented by array A.
+
+For example, given the array
+
+    A[0] = 1
+    A[1] = -2
+    A[2] = 0
+    A[3] = 9
+    A[4] = -1
+    A[5] = -2
+
+the function should return 8, as explained above.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [2..100,000];
+  each element of array A is an integer within the range [−10,000..10,000].
+
+## MinAbsSum
+
+*Hard*
+
+**Given array of integers, find the lowest absolute sum of elements.**
+
+For a given array A of N integers and a sequence S of N integers from the set {−1, 1}, we define val(A, S) as follows:
+
+    val(A, S) = |sum{ A[i]*S[i] for i = 0..N−1 }|
+
+(Assume that the sum of zero elements equals zero.)
+
+For a given array A, we are looking for such a sequence S that minimizes val(A,S).
+
+Write a function:
+
+    def solution(a)
+
+that, given an array A of N integers, computes the minimum value of val(A,S) from all possible values of val(A,S) for all possible sequences S of N integers from the set {−1, 1}.
+
+For example, given array:
+
+    A[0] =  1
+    A[1] =  5
+    A[2] =  2
+    A[3] = -2
+
+your function should return 0, since for S = [−1, 1, −1, 1], val(A, S) = 0, which is the minimum possible value.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [0..20,000];
+  each element of array A is an integer within the range [−100..100].
+
+Copyright 2009–2023 by Codility Limited. All Rights Reserved. Unauthorized copying, publication or disclosure prohibited.
