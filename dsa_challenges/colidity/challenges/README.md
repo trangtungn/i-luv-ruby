@@ -31,3 +31,94 @@ Assume that:
   - arrays A and B have equal sizes.
 
 In your solution, focus on correctness. The performance of your solution will not be the focus of the assessment.
+
+# Entrance Test to Employment Hero
+
+## This is a demo task.
+
+Write a function:
+
+    def solution(a)
+
+that, given an array A of N integers, returns the smallest positive integer (greater than 0) that does not occur in A.
+
+For example, given A = [1, 3, 6, 4, 1, 2], the function should return 5.
+
+Given A = [1, 2, 3], the function should return 4.
+
+Given A = [−1, −3], the function should return 1.
+
+Write an efficient algorithm for the following assumptions:
+
+  N is an integer within the range [1..100,000];
+  each element of array A is an integer within the range [−1,000,000..1,000,000].
+
+## Task 1
+
+Write a function function solution(x, y) that, given a string x and a string y, returns a boolean that checks whether all of the characters in the string y exist at some point in the string x. Furthermore, the characters from y need to occur in the same order in x. There may be additional characters in string x, so long as each character from y appears and the order is maintained.
+
+If all of the characters from y appear in x in the correct order return the boolean true, otherwise return false
+
+Both of the input strings will consist of alpha-numeric characters only. The length of the strings may be quite large so performance should be a consideration for your solution.
+
+Example 1
+
+    x= "ABCD" y = "AC"
+
+Result=true
+
+The expected result is true because "A" and "C" both appear in "ABCD" and in that order.
+
+Example 2
+
+    x = "ABCD" y = "CA"
+
+Result false
+
+The expected result if false because even though "C" and "A" both appear in "ABCD" the order is in x is different to y.
+
+Example 3
+
+    x="ABCAD y = "BA"
+
+Result true
+
+The expected result is tree because "B" and "A" both appear in "ABCAD". Note, the first "A" appears before the "B" but then there is a subsequent "A" so the result should be true.
+
+## Task 3
+
+Write a function that receives an array of strings that represent friend connections along with the names of two people and retums a number representing the degrees of separation between the two people.
+
+The connections will be represented by an array of strings with each string taking the format namelsname2 for examples alice:bob. You can assume that the strings representing the connections will always be lower case a-z only.
+
+The names of the people to find the degrees of separation between will always be non-
+
+empty strings e.g. "alice" or "bob".
+
+Your function will return the number of degrees of separation between the two people. If no connection can be made through friends or friends of friends etc then return -1.
+
+Example 1
+
+  connections = ["fred:joe", "joe:mary", "mary:fred", "mary:bill"]
+
+  namel = "fred"
+
+  name2 = "bill"
+
+Result = 2
+
+The expected result is 2 because fred is friends with mary, and mary is friends with bill. That is, bill is of distance 2 from fred.
+
+Test Output
+
+    fred > mary > bill (fred -> mary = 1, mary -> bill = 2)
+
+Example 2
+
+    connections= ["fred:joe", "joe:mary", "kate:sean", "sean:sally"]
+    namel = "fred"
+    name2 = "sally"
+
+Result -1
+
+The expected result is -1 because there are no connections that link fred to sally through either his friends or friends of friends etc.
