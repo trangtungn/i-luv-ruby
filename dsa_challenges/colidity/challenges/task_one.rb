@@ -1,7 +1,24 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
+# USE array.index for better search performance
 def solution(a, b)
+  return false if a.empty? || b.empty?
+
+  i = 0 # Index to keep track of current position in a
+  b.each_char do |char|
+    # Search for the current character in a, starting from the current index
+    idx = a.index(char, i)
+    return false if idx.nil? # If the character is not found, return false
+
+    # If the character is found, update the current index to continue searching from the next position
+    i = idx + 1
+  end
+  # If all characters are found in the correct order, return true
+  true
+end
+
+def solution2(a, b)
   arr_a = a.chars
   arr_b = b.chars
   return false if arr_a.empty? || arr_b.empty?
@@ -43,7 +60,8 @@ args = [
 ]
 
 args.each_with_index do |arg, i|
-  p '-' * 10
-  p i + 1
+  p '#1 ---- '
   p solution(*arg)
+  p '#2 ---- '
+  p solution2(*arg)
 end
