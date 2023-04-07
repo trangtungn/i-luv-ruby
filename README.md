@@ -9,3 +9,5 @@ More source code can be found here https://gitlab.com/i-love-ruby/i-love-ruby.gi
 ## Use Jupyter Lab to run code
 - In MyFirstNotebook: Python
 - In MyFirstRubyNotebook: Ruby
+
+## Hello Tien!!!
