@@ -20,4 +20,5 @@ class Basket
 end
 
 basket = Basket.new([*?a..?z, *'a'..'z']) # splat a -> z
+p basket.items
 p basket.total

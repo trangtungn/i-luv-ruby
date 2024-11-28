@@ -4,7 +4,8 @@
 require 'ruby-prof'
 
 # profile the code
-RubyProf.start
+profile = RubyProf::Profile.new
+profile.start
 
 # Check out items in supermarket
 class Basket
@@ -26,7 +27,9 @@ basket = Basket.new([*?a..?z, *'a'..'z']) # splat a -> z
 p "Total: #{basket.total}"
 
 # ... code to profile ...
-result = RubyProf.stop
+result = profile.stop
 # print a flat profile to text
 printer = RubyProf::FlatPrinter.new(result)
 printer.print($stdout)
+printer = RubyProf::GraphPrinter.new(result)
+printer.print(STDOUT, {})
