@@ -43,19 +43,16 @@ def arr2
   [3, 4]
 end
 
-p '3 --- Array ---'
-# Output: [1, 2, 3, 4]
-# remove duplicates
-# preserve order
-p arr1 | arr2
+p '3 --- arr1 | arr2 ---'
+# remove duplicates AND preserve order
+p arr1 | arr2 # [1, 2, 3, 4]
 
-# Output: [1, 2, 3, 4, 3, 4]
-p arr1 + arr2
+p '4 --- arr1 + arr2 ---'
+p arr1 + arr2 # [1, 2, 3, 4, 3, 4]
 
-p '4 --- Array ---'
-# Output: [1, 2]
-p arr1 || arr2
+p '5 --- arr1 || arr2 ---'
+p arr1 || arr2 # [1, 2, 3, 4]
 
-p '5 ---'
+p '6 --- bitwise OR ---'
 p 'bitwise OR'
 p 133 | 224
