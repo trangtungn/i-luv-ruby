@@ -1,6 +1,9 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
+# https://thoughtbot.com/blog/my-adventure-with-async-ruby
+# https://socketry.github.io/async/guides/asynchronous-tasks/index
+#
 require 'async'
 require 'async/barrier'
 
@@ -57,22 +60,28 @@ class Article
 
   def generate_content_async_barrier
     paragraphs = []
-    barrier = Async::Barrier.new
 
-    Async do
-      5.times do |i|
-        barrier.async do
-          paragraphs << generate_paragraph(i)
+    wait_all do |barrier|
+      Async do
+        5.times do |i|
+          barrier.async do
+            paragraphs << generate_paragraph(i)
+          end
         end
       end
     end
-
-    barrier.wait
 
     paragraphs.join("\n")
   end
 
   private
+
+  def wait_all(&block)
+    barrier = Async::Barrier.new
+    block.call(barrier)
+
+    barrier.wait
+  end
 
   def generate_paragraph(i)
     sleep 1
