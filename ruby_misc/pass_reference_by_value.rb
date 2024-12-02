@@ -18,9 +18,9 @@ end
 
 array = [0]
 p reassign(array)
-p "array: #{array}"
+p "--- reassigned array: #{array}"
 p append(array)
-p "array: #{array}"
+p "--- appended array: #{array}"
 
 array_a = [0]
 array_b = array_a
