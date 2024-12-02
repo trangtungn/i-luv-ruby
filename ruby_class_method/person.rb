@@ -33,17 +33,17 @@ AnotherPerson.define_singleton_method(:class_method4) do
 end
 
 AnotherPerson.instance_eval do
-  def class_method5
+  def class_method5 # Directly creates a class method
     puts "I'm class method 5"
   end
 end
 
 AnotherPerson.class_eval do
-  define_singleton_method(:class_method6) do
+  define_singleton_method(:class_method6) do # Needs to explicitly call define_singleton_method
     puts "I'm class method 6"
   end
 end
 
-AnotherPerson.class_method4  # Output: I'm class method 4
+# AnotherPerson.class_method4  # Output: I'm class method 4
 AnotherPerson.class_method5  # Output: I'm class method 5
 AnotherPerson.class_method6  # Output: I'm class method 6

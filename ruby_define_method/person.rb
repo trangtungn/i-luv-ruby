@@ -21,5 +21,6 @@ end
 a = AnotherPerson.new
 a.barney
 a.wilma
+
 a.create_method(:betty) { p self }
 a.betty
