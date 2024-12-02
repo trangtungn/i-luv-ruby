@@ -1,3 +1,4 @@
+#!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
 def start
@@ -62,7 +63,7 @@ Dollar.line
 
 puts '-' * 80
 puts 'Notice that whenever we call NewStar.line, the line function in At module is called.'
-puts 'It\’s because since we have defined it as Star.line in NewStar module, NewStar.line does not exist '
+puts "It's because since we have defined it as Star.line in NewStar module, NewStar.line does not exist "
 puts 'and hence the function line in the At module is called.'
 NewStar.line
 

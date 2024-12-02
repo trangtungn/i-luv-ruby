@@ -1,3 +1,4 @@
+#!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
 # module Start sign
@@ -13,8 +14,6 @@ module Dollar
     puts '$' * 20
   end
 end
-
-line
 
 # rubocop:disable Style/MixinUsage
 include Star
