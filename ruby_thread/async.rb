@@ -1,40 +1,72 @@
 #!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
-# https://thoughtbot.com/blog/my-adventure-with-async-ruby
+# My adventure with Async Ruby: https://thoughtbot.com/blog/my-adventure-with-async-ruby
 # https://socketry.github.io/async/guides/asynchronous-tasks/index
 #
 require 'async'
 require 'async/barrier'
 
 class Article
-  def initialize(method = :sync)
-    @method = method
+  def to_s(method = :sync)
+    case method
+    when :sync
+      to_s_sync
+    when :async
+      to_s_async
+    when :async_barrier
+      to_s_async_barrier
+    end
   end
 
-  def to_s
+  private
+
+  def to_s_sync
     <<~MARKDOWN
       # #{generate_title}
 
-      #{generate_body}
+      #{generate_content}
     MARKDOWN
+  end
+
+  def to_s_async
+    Sync do
+      title_task = Async { generate_title }
+      content_task = Async { generate_content_async } # <--- Async here is not required, but it's a good practice
+      # to create 2 concurrent tasks (title_task and content_task)
+      # and then in content_task, create n tasks, each for generating a paragraph
+
+      title = title_task.wait
+      content = content_task.wait
+
+      <<~MARKDOWN
+        # #{title}
+
+        #{content}
+      MARKDOWN
+    end
+  end
+
+  def to_s_async_barrier
+    Sync do
+      title_task = Async { generate_title }
+      content_task = Async { generate_content_async_barrier }
+
+      title = title_task.wait
+      content = content_task.wait
+
+      <<~MARKDOWN
+        # #{title}
+
+        #{content}
+      MARKDOWN
+    end
   end
 
   def generate_title
     sleep 2
 
     "A title: #{@method}"
-  end
-
-  def generate_body
-    case @method
-    when :sync
-      generate_content
-    when :async
-      generate_content_async
-    when :async_barrier
-      generate_content_async_barrier
-    end
   end
 
   def generate_content
@@ -46,14 +78,11 @@ class Article
   def generate_content_async
     paragraphs = []
 
-    Sync do
-      paragraphs << 5.times.map { |i|
-        Async do
-          generate_paragraph(i)
-        end
-      }
-      .map(&:wait) # <--- wait after creating all tasks
-    end
+    paragraphs << 5.times.map { |i|
+      Async do
+        generate_paragraph(i)
+      end
+    }.map(&:wait) # <--- wait after creating all tasks
 
     paragraphs.join("\n")
   end
@@ -62,11 +91,9 @@ class Article
     paragraphs = []
 
     wait_all do |barrier|
-      Async do
-        5.times do |i|
-          barrier.async do
-            paragraphs << generate_paragraph(i)
-          end
+      5.times do |i|
+        barrier.async do
+          paragraphs << generate_paragraph(i)
         end
       end
     end
@@ -74,10 +101,9 @@ class Article
     paragraphs.join("\n")
   end
 
-  private
-
   def wait_all(&block)
     barrier = Async::Barrier.new
+
     block.call(barrier)
 
     barrier.wait
@@ -94,9 +120,9 @@ t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 puts Article.new.to_s
 t1 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 puts "Time: #{t1 - t0} seconds."
-puts Article.new(:async).to_s
+puts Article.new.to_s(:async)
 t2 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 puts "Time: #{t2 - t1} seconds."
-puts Article.new(:async_barrier).to_s
+puts Article.new.to_s(:async_barrier)
 t3 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 puts "Time: #{t3 - t2} seconds."

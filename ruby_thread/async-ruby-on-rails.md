@@ -163,3 +163,62 @@ end
 ```
 
 **Note that we need to run this outside of a transaction, so we need to call disable_ddl_transaction! in the migration.**
+
+## Async gem
+
+- Github: https://socketry.github.io/async/
+- Reference: https://thoughtbot.com/blog/my-adventure-with-async-ruby
+
+### The problem
+
+Refactor the `to_s` method to improve the time it takes to run from ~7 seconds to ~2 seconds.
+
+```ruby
+class Article
+  def to_s
+    <<~MARKDOWN
+      # #{generate_title}
+
+      #{generate_content}
+    MARKDOWN
+  end
+
+  def generate_title
+    sleep 2
+
+    "A title"
+  end
+
+  def generate_content
+    5.times.map { |i|
+      generate_paragraph(i)
+    }.join("\n")
+  end
+
+  private
+
+  def generate_paragraph(i)
+    sleep 1
+
+    "Paragraph #{i}"
+  end
+end
+
+t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+Article.new.to_s
+t1 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+puts "Time: #{t1 - t0} seconds."
+```
+
+### Approaches
+
+![Approaches](./images/async-approaches.png)
+
+Concurrent tasks with `Async`:
+
+- Reference: [My adventure with Async Ruby](https://thoughtbot.com/blog/my-adventure-with-async-ruby)
+- Diagram of the execution:
+  ![Concurrent tasks with Async](./images/async-concurrent-tasks.png)
+
+- Solutions:
+  - [async.rb](./async.rb)
