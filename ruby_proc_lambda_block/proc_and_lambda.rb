@@ -1,3 +1,4 @@
+#!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
 # Ruby 1.9 made proc() a synonym for Proc.new()
@@ -45,7 +46,7 @@ def proc_method_test
 
   puts 'This line is never executed!'
 end
-proc_method_test
+p proc_method_test
 
 def lambda_math
   puts 'A lambda returns value to the method and allows it to continue:'
