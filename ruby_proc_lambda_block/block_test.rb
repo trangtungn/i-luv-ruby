@@ -1,3 +1,4 @@
+#!/Users/trangtungn/.rbenv/shims/ruby -w
 # frozen_string_literal: true
 
 BEGIN {
