@@ -24,12 +24,13 @@ class BaseClass
 end
 
 class TestPrependVsInclude < BaseClass
-  prepend PrependModule
   include IncludeModule
 
   def call
     puts "ExampleCommand: Main call"
   end
+
+  prepend PrependModule
 end
 
 # order of execution
