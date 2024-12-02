@@ -8,8 +8,12 @@ require 'async'
 require 'async/barrier'
 
 class Article
-  def to_s(method = :sync)
-    case method
+  def initialize(method = :sync)
+    @method = method
+  end
+
+  def to_s
+    case @method
     when :sync
       to_s_sync
     when :async
@@ -78,13 +82,13 @@ class Article
   def generate_content_async
     paragraphs = []
 
-    paragraphs << 5.times.map { |i|
+    5.times do |i|
       Async do
-        generate_paragraph(i)
+        paragraphs << generate_paragraph(i)
       end
-    }.map(&:wait) # <--- wait after creating all tasks
+    end
 
-    paragraphs.join("\n")
+    paragraphs.map(&:wait).join("\n")
   end
 
   def generate_content_async_barrier
@@ -117,12 +121,12 @@ class Article
 end
 
 t0 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-puts Article.new.to_s
+puts Article.new(:sync).to_s
 t1 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 puts "Time: #{t1 - t0} seconds."
-puts Article.new.to_s(:async)
+puts Article.new(:async).to_s
 t2 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 puts "Time: #{t2 - t1} seconds."
-puts Article.new.to_s(:async_barrier)
+puts Article.new(:async_barrier).to_s
 t3 = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 puts "Time: #{t3 - t2} seconds."
